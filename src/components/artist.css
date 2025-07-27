@@ -1,0 +1,48 @@
+.artist{
+    place-self:center;
+    padding:40px;
+    border-radius:10px;
+    background-image:linear-gradient(45deg,#1ED760);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.header{
+    display:flex;
+    flex-direction:row;
+    gap:700px;
+    background-color: #191414;
+}
+.header img {
+   height: 100px;
+   width:300px;
+}
+.header h1{
+    display:flex;
+    color:#1ED760
+}
+
+.search-bar{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+.search-bar input{
+    height:50px;
+    border:none;
+    outline:none;
+    border-radius:40px;
+    padding-left:25px;
+    color:#626262;
+    background:#ebfffc;
+    font-size:18px;
+}
+
+.search-bar img{
+    width:50px;
+    padding:15px;
+    border-radius:50%;
+    background:#ebfffc;
+    cursor:pointer;
+}
