@@ -1,0 +1,19 @@
+# Exported from Render on 2025-08-06T22:05:09Z
+services:
+  - type: web
+    name: Artist-information
+    runtime: node
+    repo: https://github.com/Christianr31/Artist-information
+    plan: free
+    envVars:
+      - key: VITE_API_BASE_URL
+        sync: false
+      - key: SPOTIFY_CLIENT_SECRET
+        sync: false
+      - key: SPOTIFY_CLIENT_ID
+        sync: false
+    region: oregon
+    buildCommand: npm install
+    startCommand: node server.cjs
+    autoDeployTrigger: commit
+version: "1"
