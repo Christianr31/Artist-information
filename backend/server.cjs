@@ -10,7 +10,7 @@ const PORT = 3001;
 
 // app.use(cors());
 app.use(cors({
-  origin: "https://artist-information.vercel.app/"
+  origin: "https://artist-information.vercel.app"
 }));
 
 
