@@ -7,11 +7,17 @@ const ArtistDetail = () => {
   const [artist, setArtist] = useState(null);
   const [albums, setAlbums] = useState([]);
 
+  // const fetchToken = async () => {
+  //   const res = await fetch("http://localhost:3001/get-token");
+  //   const data = await res.json();
+  //   return data.access_token;
+  // };
   const fetchToken = async () => {
-    const res = await fetch("http://localhost:3001/get-token");
-    const data = await res.json();
-    return data.access_token;
-  };
+  const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/get-token`);
+  const data = await res.json();
+  return data.access_token;
+};
+
 
   const fetchAllAlbums = async (artistId, token) => {
     let allAlbums = [];

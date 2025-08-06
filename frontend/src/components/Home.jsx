@@ -12,11 +12,17 @@ const Home = () => {
   const [artists, setArtists] = useState([]);
   const navigate = useNavigate();
 
+  // const fetchToken = async () => {
+  //   const res = await fetch("http://localhost:3001/get-token");
+  //   const data = await res.json();
+  //   return data.access_token;
+  // };
   const fetchToken = async () => {
-    const res = await fetch("http://localhost:3001/get-token");
-    const data = await res.json();
-    return data.access_token;
-  };
+  const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/get-token`);
+  const data = await res.json();
+  return data.access_token;
+};
+
 
   const searchArtists = async () => {
     if (!query.trim()) return;

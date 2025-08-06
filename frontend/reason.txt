@@ -1,0 +1,14 @@
+The reason it doesnt work on local host is because of 
+___________________________________________________________________________-
+  // const fetchToken = async () => {
+  //   const res = await fetch("http://localhost:3001/get-token");
+  //   const data = await res.json();
+  //   return data.access_token;
+  // };
+  const fetchToken = async () => {
+  const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/get-token`);
+  const data = await res.json();
+  return data.access_token;
+};
+____________________________________________________________________________
+This segment of code is us trying to make the front end work on vercel and the backend work on render.
