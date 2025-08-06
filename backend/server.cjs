@@ -8,7 +8,11 @@ require('dotenv').config();
 const app = express();
 const PORT = 3001;
 
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: "https://artist-information.vercel.app/"
+}));
+
 
 app.get('/get-token', async (req, res) => {
   const client_id = process.env.SPOTIFY_CLIENT_ID;
