@@ -1,14 +1,15 @@
-// server.cjs
-
 const express = require('express');
 const fetch = require('node-fetch');
-const cors = require('cors'); //  add this
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
-app.use(cors());
+// Allow CORS from your Vercel frontend
+app.use(cors({
+  origin: 'https://artist-information.vercel.app/' // replace with actual domain
+}));
 
 app.get('/get-token', async (req, res) => {
   const client_id = process.env.SPOTIFY_CLIENT_ID;
@@ -29,11 +30,6 @@ app.get('/get-token', async (req, res) => {
       body: 'grant_type=client_credentials',
     });
 
-    if (!response.ok) {
-      const errorDetails = await response.json();
-      return res.status(response.status).json({ error: errorDetails });
-    }
-
     const data = await response.json();
     res.json(data);
   } catch (error) {
@@ -43,5 +39,5 @@ app.get('/get-token', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
