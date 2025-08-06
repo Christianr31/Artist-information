@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: artist-backend
+    env: node
+    plan: free
+    repo: https://github.com/Christianr31/Artist-information
+    branch: main
+    rootDir: backend # 👈 This is the critical line
+    buildCommand: npm install
+    startCommand: node server.cjs
