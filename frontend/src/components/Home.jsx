@@ -1,4 +1,3 @@
-// src/components/Home.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
@@ -13,7 +12,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   const fetchToken = async () => {
-    const res = await fetch("http://localhost:3001/get-token");
+    const res = await fetch("https://your-render-backend-name.onrender.com/get-token");
     const data = await res.json();
     return data.access_token;
   };
@@ -38,28 +37,21 @@ const Home = () => {
   };
 
   return (
-    <div className="app">
-      {/* Header */}
-      <div className="header">
+    <div className="home">
+      <header className="header">
         <img src={spotify_logo} alt="Spotify Logo" />
-        <h1>Artist Information</h1>
+      </header>
+      <div className="search-bar">
+        <input
+          type="text"
+          placeholder="Search for an artist..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button onClick={searchArtists}>
+          <img src={search_icon} alt="Search" />
+        </button>
       </div>
-
-      {/* Search Bar */}
-      <div className="artist">
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && searchArtists()}
-          />
-          <img src={search_icon} alt="search" onClick={searchArtists} />
-        </div>
-      </div>
-
-      {/* Search Results */}
       <div className="artist-list">
         {artists.map((artist) => (
           <div
@@ -68,21 +60,11 @@ const Home = () => {
             onClick={() => viewArtist(artist.id)}
           >
             <img
-              src={artist.images[0]?.url || "https://via.placeholder.com/150"}
+              src={artist.images[0]?.url || ""}
               alt={artist.name}
-              width="150"
+              className="artist-image"
             />
-            <h2>{artist.name}</h2>
-            <p>
-              <strong>Genres:</strong> {artist.genres.join(", ")}
-            </p>
-            <p>
-              <strong>Followers:</strong>{" "}
-              {artist.followers.total.toLocaleString()}
-            </p>
-            <p>
-              <strong>Popularity:</strong> {artist.popularity}
-            </p>
+            <div className="artist-name">{artist.name}</div>
           </div>
         ))}
       </div>
@@ -91,4 +73,3 @@ const Home = () => {
 };
 
 export default Home;
-
